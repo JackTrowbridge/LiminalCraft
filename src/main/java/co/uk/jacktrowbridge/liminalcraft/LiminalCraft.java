@@ -1,5 +1,6 @@
 package co.uk.jacktrowbridge.liminalcraft;
 
+import co.uk.jacktrowbridge.liminalcraft.events.BlockProtectionEvents;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Pos;
@@ -40,8 +41,20 @@ public class LiminalCraft {
            player.setRespawnPoint(new Pos(0, 42, 0));
         });
 
+        // Registering
+        registerEvents(globalEventHandler);
+        registerCommands();
+
         // Start the server
         minecraftServer.start("0.0.0.0", 25565);
+
+    }
+
+    private static void registerEvents(GlobalEventHandler globalEventHandler){
+        new BlockProtectionEvents().registerEvents(globalEventHandler);
+    }
+
+    private static void registerCommands(){
 
     }
 
